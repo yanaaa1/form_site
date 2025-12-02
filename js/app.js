@@ -54,7 +54,7 @@ const photos = [
         title: "Силуэт в закате",
         category: "people",
         tags: ["portrait", "sunset"],
-        src: "imgs/jimg9.jpg"
+        src: "imgs/jimg9.jpeg"
     }
 ];
 
@@ -390,6 +390,7 @@ function initContactForm() {
         );
     });
 }
+
 
 
 
