@@ -333,14 +333,14 @@ function setCurrentYear() {
 // ---------------- ОБРАТНАЯ СВЯЗЬ (EmailJS) ----------------
 
 function initEmailJS() {
-    // скрипт EmailJS подключён в index.html в <head>
     if (!window.emailjs) {
         console.error("EmailJS SDK не загрузился");
         return;
     }
 
-    // твой public key (User ID) из EmailJS
-    emailjs.init("0_VSLzOFvfN1JBnFA");
+    emailjs.init({
+        publicKey: "0_VSLzOFvfN1JBnFA",
+    });
 }
 
 function initContactForm() {
@@ -390,3 +390,4 @@ function initContactForm() {
         );
     });
 }
+
