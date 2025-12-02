@@ -217,19 +217,19 @@ body {
 }
 
 .hero-preview--1 {
-    background-image: url("https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-image: url("../imgs/img1.jpeg");
 }
 
 .hero-preview--2 {
-    background-image: url("https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-image: url("../imgs/img2.jpeg");
 }
 
 .hero-preview--3 {
-    background-image: url("https://images.pexels.com/photos/105872/pexels-photo-105872.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-image: url("../imgs/img3.jpg");
 }
 
 .hero-preview--4 {
-    background-image: url("https://images.pexels.com/photos/1461974/pexels-photo-1461974.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-image: url("../imgs/img4.jpeg");
 }
 
 /* Галерея */
@@ -627,3 +627,4 @@ body {
         padding-inline: 14px;
     }
 }
+
