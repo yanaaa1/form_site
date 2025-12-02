@@ -334,9 +334,12 @@ function setCurrentYear() {
 
 function initEmailJS() {
     // скрипт EmailJS подключён в index.html в <head>
-    if (!window.emailjs) return;
+    if (!window.emailjs) {
+        console.error("EmailJS SDK не загрузился");
+        return;
+    }
 
-    // ЗАМЕНИ на свой public key (User ID) из EmailJS
+    // твой public key (User ID) из EmailJS
     emailjs.init("0_VSLzOFvfN1JBnFA");
 }
 
@@ -344,19 +347,27 @@ function initContactForm() {
     const form = document.getElementById("contact-form");
     const statusEl = document.getElementById("status-message");
 
-    if (!form || !window.emailjs) {
-        return;
-    }
+    if (!form) return;
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();
+
+        // если SDK не подгрузился — показываем понятную ошибку
+        if (!window.emailjs) {
+            if (statusEl) {
+                statusEl.textContent =
+                    "Сервис отправки сейчас недоступен. Попробуйте позже.";
+                statusEl.className = "contact-status contact-status--error";
+            }
+            console.error("emailjs не найден на window");
+            return;
+        }
 
         if (statusEl) {
             statusEl.textContent = "Отправляем сообщение...";
             statusEl.className = "contact-status";
         }
 
-        // ЗАМЕНИ на свои реальные IDs из EmailJS
         const serviceID = "service_qgydrgz";
         const templateID = "template_i2upqeu";
 
@@ -374,6 +385,7 @@ function initContactForm() {
                         "Ошибка при отправке: " + (error?.text || "неизвестная ошибка");
                     statusEl.classList.add("contact-status--error");
                 }
+                console.error("EmailJS error:", error);
             }
         );
     });
