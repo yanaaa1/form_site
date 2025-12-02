@@ -5,56 +5,56 @@ const photos = [
         title: "Закат над морем",
         category: "nature",
         tags: ["sea", "sunset"],
-        src: "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src: "imgs/jimg1.jpeg"
     },
     {
         id: 2,
         title: "Город ночью",
         category: "city",
         tags: ["night", "street", "long-exposure"],
-        src: "https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src: "imgs/jimg2.jpeg"
     },
     {
         id: 3,
         title: "Горное озеро",
         category: "nature",
         tags: ["mountains", "lake"],
-        src: "https://images.pexels.com/photos/355241/pexels-photo-355241.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src: "imgs/jimg3.jpeg"
     },
     {
         id: 4,
         title: "Уличный портрет",
         category: "people",
         tags: ["portrait", "street"],
-        src: "https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src: "imgs/jimg4.jpeg"
     },
     {
         id: 5,
         title: "Минимализм в архитектуре",
         category: "abstract",
         tags: ["architecture", "minimalism"],
-        src: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src: "imgs/jimg5.jpeg"
     },
     {
         id: 6,
         title: "Ночной дождь в мегаполисе",
         category: "city",
         tags: ["night", "street"],
-        src: "https://images.pexels.com/photos/1101122/pexels-photo-1101122.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src: "imgs/jimg6.jpeg"
     },
     {
         id: 7,
         title: "Тропический пляж",
         category: "nature",
         tags: ["sea"],
-        src: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src: "imgs/jimg7.jpeg"
     },
     {
         id: 8,
         title: "Силуэт в закате",
         category: "people",
         tags: ["portrait", "sunset"],
-        src: "https://images.pexels.com/photos/167404/pexels-photo-167404.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src: "imgs/jimg8.jpg"
     }
 ];
 
@@ -390,4 +390,5 @@ function initContactForm() {
         );
     });
 }
+
 
