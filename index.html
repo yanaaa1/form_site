@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Интерактивная фотогалерея с фильтрами</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+          content="Интерактивная фотогалерея с фильтрацией по категориям и тегам. Фильтры сохраняются в URL. Проект на HTML, CSS и JavaScript." />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/sdk/3.6.2/email.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <span class="logo-mark">PG</span>
+            <div class="logo-text">
+                <span class="logo-title">Photo Gallery</span>
+                <span class="logo-subtitle">Интерактивный проект на JS</span>
+            </div>
+        </div>
+
+        <nav class="main-nav" aria-label="Основная навигация">
+            <a href="#gallery" class="nav-link">Галерея</a>
+            <a href="#about" class="nav-link">О проекте</a>
+            <a href="#contact" class="nav-link">Обратная связь</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero / интро -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <h1 id="hero-title">Интерактивная фотогалерея</h1>
+                <p class="hero-lead">
+                    Фотографии путешествий, города и природы с удобной
+                    фильтрацией по <strong>темам</strong> и <strong>тегам</strong>.
+                    Выбранные фильтры сохраняются в адресной строке,
+                    так что галерею можно отправить ссылкой.
+                </p>
+                <p class="hero-note">
+                    Технологии: HTML, CSS, JavaScript (работа с DOM, управление
+                    состоянием, синхронизация с URL).
+                </p>
+                <a href="#gallery" class="btn btn-primary">Перейти к галерее</a>
+            </div>
+            <div class="hero-media" aria-hidden="true">
+                <div class="hero-preview-grid">
+                    <div class="hero-preview hero-preview--1"></div>
+                    <div class="hero-preview hero-preview--2"></div>
+                    <div class="hero-preview hero-preview--3"></div>
+                    <div class="hero-preview hero-preview--4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основной блок: фильтры + галерея -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <header class="gallery-header">
+                <div>
+                    <h2 class="section-title">Галерея</h2>
+                    <p class="section-subtitle">
+                        Используйте фильтры по категориям и тегам. Состояние фильтров
+                        автоматически сохраняется в URL (query-параметры).
+                    </p>
+                </div>
+                <div class="gallery-counter" aria-live="polite">
+                    Найдено снимков: <span id="photo-count">0</span>
+                </div>
+            </header>
+
+            <!-- Панель фильтров -->
+            <section class="filters" aria-label="Фильтры галереи">
+                <!-- Категории -->
+                <div class="filter-group">
+                    <h3 class="filter-title">Категория</h3>
+                    <div class="filter-chips" id="category-filters">
+                        <!-- Кнопки категорий -->
+                        <button class="chip chip--active" data-category="all" type="button">
+                            Все
+                        </button>
+                        <button class="chip" data-category="nature" type="button">
+                            Природа
+                        </button>
+                        <button class="chip" data-category="city" type="button">
+                            Город
+                        </button>
+                        <button class="chip" data-category="people" type="button">
+                            Люди
+                        </button>
+                        <button class="chip" data-category="abstract" type="button">
+                            Абстракция
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Теги -->
+                <div class="filter-group">
+                    <h3 class="filter-title">Теги</h3>
+                    <div class="filter-chips" id="tag-filters">
+                        <button class="chip" data-tag="sea" type="button">#море</button>
+                        <button class="chip" data-tag="mountains" type="button">#горы</button>
+                        <button class="chip" data-tag="night" type="button">#ночь</button>
+                        <button class="chip" data-tag="architecture" type="button">#архитектура</button>
+                        <button class="chip" data-tag="portrait" type="button">#портрет</button>
+                        <button class="chip" data-tag="street" type="button">#улица</button>
+                        <button class="chip" data-tag="long-exposure" type="button">#лонг-экспозиция</button>
+                        <button class="chip" data-tag="minimalism" type="button">#минимализм</button>
+                    </div>
+                </div>
+
+                <!-- Поиск по названию -->
+                <div class="filter-group">
+                    <h3 class="filter-title">Поиск</h3>
+                    <label class="search-label">
+                        <span class="visually-hidden">Поиск по названию снимка</span>
+                        <input
+                            id="search-input"
+                            type="search"
+                            placeholder="Например, “закат”, “Токио”, “портрет”"
+                            autocomplete="off"
+                        />
+                    </label>
+                </div>
+            </section>
+
+            <!-- Сетка галереи -->
+            <section class="gallery-grid" aria-label="Список фотографий" id="gallery-grid">
+                <!-- Карточки фотографий рендерятся в JS -->
+            </section>
+        </div>
+    </section>
+
+    <!-- Блок "О проекте" -->
+    <section id="about" class="about-section">
+        <div class="container about-inner">
+            <div>
+                <h2 class="section-title">О проекте</h2>
+                <p>
+                    Этот проект реализует интерактивную фотогалерею с управлением
+                    состоянием на стороне клиента (client-side state management).
+                </p>
+                <ul class="about-list">
+                    <li>Фильтрация по категориям и тегам.</li>
+                    <li>Поиск по названию снимка.</li>
+                    <li>Состояние фильтров кодируется в URL (query-параметры).</li>
+                    <li>При обновлении страницы фильтры восстанавливаются из URL.</li>
+                    <li>Семантическая вёрстка и адаптивный дизайн.</li>
+                </ul>
+                <p>
+                    Стек: <strong>HTML</strong> + <strong>CSS</strong> + <strong>Vanilla JavaScript</strong>.
+                    Архитектура JS разделена логически на данные, состояние, рендеринг и обработчики событий,
+                    что упрощает расширение проекта и дальнейшую поддержку.
+                </p>
+            </div>
+            <aside class="about-aside">
+                <h3 class="about-aside-title">Идеи для расширения</h3>
+                <ul class="about-list">
+                    <li>Подгрузка фотографий с сервера (через fetch).</li>
+                    <li>Модальное окно с большим фото и описанием.</li>
+                    <li>Сортировка по дате или популярности.</li>
+                    <li>Сохранение избранных фото в LocalStorage.</li>
+                </ul>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Блок обратной связи -->
+    <section id="contact" class="contact-section">
+        <div class="container contact-inner">
+            <div class="contact-text">
+                <h2 class="section-title">Обратная связь</h2>
+                <p class="section-subtitle">
+                    Если у вас есть вопросы по проекту, идеям для улучшения или вы хотите оставить отзыв —
+                    напишите мне через форму справа.
+                </p>
+                <p class="contact-note">
+                    Сообщение придёт на почту через сервис EmailJS. Поля, отмеченные звёздочкой, обязательны для заполнения.
+                </p>
+            </div>
+
+            <form id="contact-form" class="contact-form">
+                <div class="contact-field">
+                    <label for="contact-name" class="contact-label">Ваше имя *</label>
+                    <input
+                        type="text"
+                        id="contact-name"
+                        name="user_name"
+                        class="contact-input"
+                        autocomplete="name"
+                        required
+                        placeholder="Иван Иванов"
+                    />
+                </div>
+
+                <div class="contact-field">
+                    <label for="contact-email" class="contact-label">Ваш email *</label>
+                    <input
+                        type="email"
+                        id="contact-email"
+                        name="user_email"
+                        class="contact-input"
+                        autocomplete="email"
+                        required
+                        placeholder="name@example.com"
+                    />
+                </div>
+
+                <div class="contact-field">
+                    <label for="contact-message" class="contact-label">Сообщение *</label>
+                    <textarea
+                        id="contact-message"
+                        name="message"
+                        class="contact-textarea"
+                        required
+                        placeholder="Коротко опишите ваш вопрос или пожелание..."
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary contact-submit">
+                    Отправить сообщение
+                </button>
+
+                <p id="status-message" class="contact-status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p class="footer-copy">
+            &copy; <span id="year"></span> Интерактивная фотогалерея. Учебный проект.
+        </p>
+        <p class="footer-copy footer-copy--right">
+            HTML · CSS · JavaScript
+        </p>
+    </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
